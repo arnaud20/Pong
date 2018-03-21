@@ -5,6 +5,7 @@ package com.example.alyarnaud.pong;
  */
 
         import android.graphics.*;
+        import android.util.Log;
         import android.view.MotionEvent;
 
         import java.util.Random;
@@ -21,8 +22,8 @@ package com.example.alyarnaud.pong;
 public class TestAnimator implements Animator {
 
     // instance variables
-    private int xcount = 0; // counts the number of logical clock ticks
-    private int ycount = 0; // counts the number of logical clock ticks
+    //private int xcount = 0; // counts the number of logical clock ticks
+    //private int ycount = 0; // counts the number of logical clock ticks
 
     private int numX;
     private int numY;
@@ -35,6 +36,9 @@ public class TestAnimator implements Animator {
 
     private Random randomX = new Random();
     private Random randomY = new Random();
+
+    private int xSpeed=15;
+    private int ySpeed=15;
 
 
 
@@ -61,14 +65,14 @@ public class TestAnimator implements Animator {
     /**
      * Tells the animation whether to go backwards.
      *
-     * @param b true iff animation is to go backwards.
+     *
      */
-    public void reverseXSpeed(boolean b) {
+    public void reverseXSpeed() {
         // set our instance variable
-        reverseX = b;
+        xSpeed = -xSpeed;
     }
-    public void reverseYSpeed(boolean b){
-        reverseY = b;
+    public void reverseYSpeed(){
+        ySpeed = -ySpeed;
 
     }
 
@@ -86,18 +90,18 @@ public class TestAnimator implements Animator {
     public void tick(Canvas g) {
         // bump our count either up or down by one, depending on whether
         // we are in "backwards mode".
-        if (reverseX) {
-            xcount--;
-        }
-        else {
-            xcount++;
-        }
-        if (reverseY) {
-            ycount--;
-        }
-        else {
-            ycount++;
-        }
+//        if (reverseX) {
+//            xcount--;
+//        }
+//        else {
+//            xcount++;
+//        }
+//        if (reverseY) {
+//            ycount--;
+//        }
+//        else {
+//            ycount++;
+//        }
 
 
         // Determine the pixel position of our ball.  Multiplying by 15
@@ -105,44 +109,55 @@ public class TestAnimator implements Animator {
         // (with the appropriate correction if the value was negative)
         // has the effect of "wrapping around" when we get to either end
         // (since our canvas size is 600 in each dimension).
-        numX = (xcount*15);
-        numY = (ycount*15);
+        numX = numX+xSpeed;
+        numY = numY+ySpeed;
         //check if the ball hits the top or bottom of the screen
-        if (numY+60 > BOX_HEIGHT) this.reverseYSpeed(true);
-        if(numY-60 < 0) this.reverseYSpeed(false);
+        if (numY+60 > BOX_HEIGHT) this.reverseYSpeed();
+        if(numY-60 < 0) this.reverseYSpeed();
         //check of ball hits right side of screen
-        if (numX+60 > BOX_WIDTH) this.reverseXSpeed(true);
+        if (numX+60 > BOX_WIDTH) this.reverseXSpeed();
         //if the ball hits the bottom right corner
         if ((numY-60 < 0)&&(numX+60 > BOX_WIDTH)){
-            this.reverseYSpeed(false) ;
-            this.reverseXSpeed(true);
+            this.reverseYSpeed() ;
+            this.reverseXSpeed();
         }
 
         //if the ball hits the top right corner
         if ((numY+60 > BOX_HEIGHT)&&(numX+60 > BOX_WIDTH)){
-            this.reverseYSpeed(true) ;
-            this.reverseXSpeed(true);
+            this.reverseYSpeed() ;
+            this.reverseXSpeed();
         }
         //if the ball hits the paddle
-        if((numX-60 < 0)&&(numY<1000)&&(numY>600)) this.reverseXSpeed(false);
+        if((numX-60 < 0)&&(numY<=1000)&&(numY>=600)) this.reverseXSpeed();
+
         //if the ball hits the left side but not the paddle
         if ((numX-60 < 0)&&((numY>1000)||(numY<600))){
-            this.numX = 100;
-            this.numY = 100;
-        }
-        //if(numX-60 < 0) this.reverseXSpeed(false);
-        //old corners
-        /**
-        if ((numY-60 < 0)&&(numX-60 < 0)) {
-            this.reverseYSpeed(false);
-            this.reverseXSpeed(false);
-        }
-        if ((numY+60 > BOX_HEIGHT)&&(numX-60 < 0)){
-            this.reverseYSpeed(true) ;
-            this.reverseXSpeed(false);
-        }
-         */
+            //Log.i("not paddle", numX+","+numY);
+            this.numX = randomX.nextInt(2400)+100;
+            this.numY = randomX.nextInt(1400)+100;
+            //random speed
+            this.xSpeed=randomX.nextInt(100)-50;
+            int n= randomX.nextInt(91)-45;
+            if (n<0){
+                n=n-15;
+            }
+            else{
+                n=n+15;
+            }
+            this.ySpeed=n;
+            n= randomX.nextInt(91)-45;
+            if (n<0){
+                n=n-15;
+            }
+            else{
+                n=n+15;
+            }
+            this.xSpeed=n;
 
+        }
+
+//ball.xSpeed when you make the array list
+//speed and num instance variables will go to the ball object
 
 
         // Draw the ball in the correct position.
@@ -150,7 +165,10 @@ public class TestAnimator implements Animator {
         redPaint.setColor(Color.RED);
         g.drawCircle(numX, numY, 60, redPaint);
         redPaint.setColor(0xff0000ff);
-        //Draw a paddle that will eventually be animated
+
+
+        //Draw a paddle
+        // Will eventually be animated
         Paint blackPaint = new Paint();
         redPaint.setColor(Color.BLACK);
         g.drawRect(0, 600, 10, 1000, blackPaint);
@@ -182,7 +200,10 @@ public class TestAnimator implements Animator {
     {
         /**if (event.getAction() == MotionEvent.ACTION_DOWN)
         {
-            goBackwards = !goBackwards;
+            use an arraylist of ball
+         loop through all the balls and do the same thing
+         create a ball object (class) with 4 intance variables speeds and positions
+
         }
          */
     }
