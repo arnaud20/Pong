@@ -72,6 +72,12 @@ public class TestAnimator implements Animator {
      * Resource: https://www.ntu.edu.sg/home/ehchua/programming/java/J8a_GameIntro-BouncingBalls.html
      * Solution: I used the example code to figure out the x,y wall relationships
      */
+    /** External Citation
+     * Date: 3/21/2018
+     * Problem: i had some wonkyness with the balls appearing all over
+     * Resource: Vegdahl
+     * Solution: changed a whole bunch of stuff and stopped using count to determine the speed
+     */
 
 
     /**
