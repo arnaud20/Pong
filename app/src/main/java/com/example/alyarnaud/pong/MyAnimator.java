@@ -6,37 +6,31 @@ package com.example.alyarnaud.pong;
 
         import android.graphics.*;
         import android.view.MotionEvent;
-
         import java.util.ArrayList;
         import java.util.Random;
 
 
 /**
- * class that animates a ball repeatedly moving diagonally on
+ * class that animates a ball bouncing in a 3 walled rectangle
  * simple background
+ * balls appear when the user clicks the screen
  *
- * @author Steve Vegdahl
- * @author Andrew Nuxoll
- * @version February 2016
+ * @author Alyssa Arnaud
  */
-public class TestAnimator implements Animator {
+public class MyAnimator implements Animator {
 
     // instance variables
     private int BOX_WIDTH = 2560; //width of tablet
     private int BOX_HEIGHT = 1600; // height of tablet
 
     private Random r = new Random();
+    /** External Citation
+    * Date: 3/21/2018
+    * Problem: unsure of how to use an ArrayList
+    * Resource: http://www.dummies.com/programming/java/use-array-lists-in-java/
+    * Solution: I followed the tutorial to set up my arraylist
+    */
 
-    //these will live in Ball
-    private int xSpeed=15;
-    private int ySpeed=15;
-    private int numX; //x position of the ball
-    private int numY;//y position of the ball
-
-    /**
-     * unsure of how to set up an arraylist
-     * http://www.dummies.com/programming/java/use-array-lists-in-java/
-     */
     ArrayList<Ball> theBalls = new ArrayList<Ball>();
 
 
