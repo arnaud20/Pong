@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
  *
  * This is the activity for the Pong game. It attaches a PongAnimator to
  * an AnimationSurface.
+ * only works horizontally
+ * tap the screen to make a new ball appear
  *
  * @author Andrew Nuxoll
  * @author Steven R. Vegdahl
