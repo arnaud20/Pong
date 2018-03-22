@@ -1,11 +1,10 @@
 package com.example.alyarnaud.pong;
 
-import java.util.Random;
 
 /**
- * Created by alyarnaud on 3/21/2018.
+ * Ball object to use in the arraylist
+ * @author Alyssa Arnaud
  */
-
 public class Ball {
 
     public int numX; //x position of the ball
@@ -20,8 +19,8 @@ public class Ball {
         this.numX = xClick;
         this.numY = yClick;
     }
+    //switch ball directions
     public void reverseXSpeed() {
-        // set our instance variable
         xSpeed = -xSpeed;
     }
     public void reverseYSpeed(){

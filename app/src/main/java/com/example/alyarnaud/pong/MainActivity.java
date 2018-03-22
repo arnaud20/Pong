@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
  *
  * @author Andrew Nuxoll
  * @author Steven R. Vegdahl
+ * @author Alyssa Arnaud
  * @version July 2013
  *
  */
@@ -31,6 +32,6 @@ public class MainActivity extends Activity {
         // Connect the animation surface with the animator
         AnimationSurface mySurface = (AnimationSurface) this
                 .findViewById(R.id.animationSurface);
-        mySurface.setAnimator(new TestAnimator());
+        mySurface.setAnimator(new MyAnimator());
     }
 }
