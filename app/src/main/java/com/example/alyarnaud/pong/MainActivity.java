@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
         import android.app.Activity;
         import android.view.Menu;
         import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * PongMainActivity

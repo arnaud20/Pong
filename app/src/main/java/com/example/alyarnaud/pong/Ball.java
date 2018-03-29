@@ -20,11 +20,12 @@ public class Ball {
         this.numY = yClick;
     }
     //switch ball directions
+    //dampen collisions to slow down velocity
     public void reverseXSpeed() {
-        xSpeed = -xSpeed;
+        xSpeed = (int)(-1.1*xSpeed);
     }
     public void reverseYSpeed(){
-        ySpeed = -ySpeed;
+        ySpeed = (int)(-1.1*ySpeed);
 
     }
 }
