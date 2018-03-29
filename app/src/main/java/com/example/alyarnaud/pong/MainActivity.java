@@ -14,7 +14,8 @@ import android.widget.TextView;
  * This is the activity for the Pong game. It attaches a PongAnimator to
  * an AnimationSurface.
  * only works horizontally
- * tap the screen to make a new ball appear
+ * There is a computer player!
+ * His paddle moves automatically
  *
  * @author Andrew Nuxoll
  * @author Steven R. Vegdahl
